@@ -15,7 +15,7 @@ public class AIController : MonoBehaviour {
         transform.Translate(Random.value * 8f - 4f, 0.29f, Random.value * 8f - 4f);
         agent = GetComponent<NavMeshAgent>();
         agent.autoBraking = false;
-        targets = GameObject.FindGameObjectsWithTag("NavTarget");
+        targets = GameObject.FindGameObjectsWithTag("NavMeshTarget");
 
         GotoNextPoint();
     }
