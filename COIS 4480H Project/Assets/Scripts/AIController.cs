@@ -4,7 +4,6 @@ using System.Collections;
 public class AIController : MonoBehaviour {
 
     private GameObject[] targets;
-    public float moveSpeed;
     public Transform goal;
     private int destPoint = 0;
     private NavMeshAgent agent;
