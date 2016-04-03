@@ -3,11 +3,13 @@ using System.Collections;
 
 public class AIController : MonoBehaviour {
 
-    Vector3 startPosition;
-    int roamRadius = 1;
-	// Use this for initialization
-	void Start ()
+    public Vector3 startPosition;
+    public int roamRadius = 1;
+    public float moveSpeed;
+    // Use this for initialization
+    void Start ()
     {
+        moveSpeed = 1f;
         startPosition = Random.insideUnitSphere;
 	}
 	

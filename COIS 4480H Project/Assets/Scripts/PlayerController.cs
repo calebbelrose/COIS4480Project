@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
     void Update()
     {
         transform.Translate(moveSpeed*Input.GetAxis("Horizontal")*Time.deltaTime, 0f, moveSpeed * Input.GetAxis("Vertical") * Time.deltaTime);
-       /* CharacterController controller = GetComponent<CharacterController>();
+        /* CharacterController controller = GetComponent<CharacterController>();
         if (Input.GetButtonDown("W"))
         {
             Vector3 forward = transform.TransformDirection(Vector3.forward);
