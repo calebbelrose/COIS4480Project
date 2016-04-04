@@ -15,13 +15,26 @@ public class Timer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Color[] colors = { Color.blue, Color.cyan, Color.gray, Color.green, Color.magenta, Color.red, Color.white, Color.yellow };
+        Color currColor;
+
         timer = 60;
         timeStarted = true;
         maxAI = 23;
         aiList = new GameObject[maxAI];
         player = Instantiate(Resources.Load("Player", typeof(GameObject))) as GameObject;
         for (int i = 0; i < maxAI; i++)
+        {
+            Renderer[] renderers;
             aiList[i] = Instantiate(Resources.Load("AI", typeof(GameObject))) as GameObject;
+            renderers = aiList[i].gameObject.GetComponentsInChildren<Renderer>();
+
+            for (int j = 0; j < renderers.Length; j++)
+            {
+                currColor = colors[(int)Random.value * colors.Length];
+                renderers[j].material.color = currColor;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -84,14 +97,11 @@ public class Timer : MonoBehaviour
         float currZ = -2f;
         linedUp = true;
 
-        transform.Translate(20f, 0f, 0f);
-
         for (int i = 0; i < 3; i++)
         {
-            float currX = 17f;
+            float currX = -2.625f;
             for (int j = 0; j < 8; j++)
             {
-                currX += 0.75f;
                 if (i * 8 + j == playerPos)
                 {
                     player.transform.position = new Vector3(currX, 0.3047705f, currZ);
@@ -104,6 +114,7 @@ public class Timer : MonoBehaviour
                     aiList[currAI].transform.position = new Vector3(currX, 0.3047705f, currZ);
                     currAI++;
                 }
+                currX += 0.75f;
             }
             currZ += 2f;
         }
