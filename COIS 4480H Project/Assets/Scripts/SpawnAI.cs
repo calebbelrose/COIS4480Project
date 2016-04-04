@@ -6,9 +6,11 @@ public class SpawnAI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        GameObject instance;
         maxAI = 25;
         for (int i = 0; i < maxAI; i++)
-            GameObject.CreatePrimitive(PrimitiveType.Cube);
-        
+            instance = Instantiate(Resources.Load("AI", typeof(GameObject))) as GameObject;
+
+
     }
 }
