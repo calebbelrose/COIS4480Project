@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        timer = 120;
+        timer = 20;
         timeStarted = true;
     }
 
@@ -35,7 +35,10 @@ public class Timer : MonoBehaviour
         if (timer > 11)
             myStyle.normal.textColor = Color.yellow;
         else if (timer < 1)
+        {
             myStyle.normal.textColor = Color.blue;
+            timeStarted = false;
+        }
         else
             myStyle.normal.textColor = Color.red;
 
