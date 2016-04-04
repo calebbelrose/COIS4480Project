@@ -6,12 +6,22 @@ public class Timer : MonoBehaviour
 
     public static float timer;
     public static bool timeStarted = false;
+    private int maxAI;
+    private GameObject[] aiList;
+    private GameObject player;
+    private bool linedUp = false;
+    private bool winner = false;
 
     // Use this for initialization
     void Start()
     {
-        timer = 1;
+        timer = 5;
         timeStarted = true;
+        maxAI = 23;
+        aiList = new GameObject[maxAI];
+        player = Instantiate(Resources.Load("Player", typeof(GameObject))) as GameObject;
+        for (int i = 0; i < maxAI; i++)
+            aiList[i] = Instantiate(Resources.Load("AI", typeof(GameObject))) as GameObject;
     }
 
     // Update is called once per frame
@@ -21,33 +31,74 @@ public class Timer : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
+        else if(linedUp && Input.GetMouseButtonDown(0))
+        { // if left button pressed...
+            Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit) && hit.transform.gameObject == player.gameObject)
+                winner = true;
+        }
     }
 
     void OnGUI()
     {
-        int minutes = Mathf.FloorToInt(timer / 60F);
-        int seconds = Mathf.FloorToInt(timer - minutes * 60);
-        string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
-
         GUIStyle myStyle = new GUIStyle();
-        myStyle.fontSize = 50;
-
-        if (timer > 11)
-            myStyle.normal.textColor = Color.yellow;
-        else if (timer < 1)
+        if (!linedUp)
         {
-            timeStarted = false;
-            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "Time's up!", myStyle);
-            StartCoroutine(Wait());
-        }
-        else
-            myStyle.normal.textColor = Color.red;
+            int minutes = Mathf.FloorToInt(timer / 60F);
+            int seconds = Mathf.FloorToInt(timer - minutes * 60);
+            string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
 
-        GUI.Label(new Rect(Screen.width / 2 - 50, 10, 100, 100), niceTime, myStyle);
+            myStyle.fontSize = 50;
+
+            if (timer > 11)
+                myStyle.normal.textColor = Color.yellow;
+            else if (timer <= 0)
+            {
+                GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "Time's up!", myStyle);
+                if (timeStarted)
+                {
+                    timeStarted = false;
+                    Invoke("LineupCharacters", 1);
+                }
+            }
+            else
+                myStyle.normal.textColor = Color.red;
+
+            if (timeStarted)
+            {
+                GUI.Label(new Rect(Screen.width / 2 - 50, 10, 100, 100), niceTime, myStyle);
+            }
+        }
+        else if (winner)
+        {
+            myStyle.normal.textColor = Color.green;
+            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You won!", myStyle);
+        }
     }
 
-    IEnumerator Wait()
+    void LineupCharacters()
     {
-        yield return new WaitForSeconds(2.5f);
+        int currAI = 0;
+        int playerPos = (int)(Random.value * (maxAI + 1));
+        float currZ = -2f;
+        linedUp = true;
+
+        transform.Translate(20f, 0f, 0f);
+
+        for (int i = 0; i < 3; i++)
+        {
+            float currX = 17f;
+            for (int j = 0; j < 8; j++)
+            {
+                currX += 0.75f;
+                if ((i + 1) * (j + 1) == playerPos)
+                    player.transform.position = new Vector3(currX, 0.3047705f, currZ);
+                else
+                    aiList[currAI++].transform.position = new Vector3(currX, 0.3047705f, currZ);
+            }
+            currZ += 2f;
+        }
+
     }
 }

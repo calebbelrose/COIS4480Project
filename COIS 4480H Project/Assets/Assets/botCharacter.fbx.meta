@@ -187,6 +187,13 @@ ModelImporter:
     4300022: LeftLeg
     4300024: LeftArm
     4300026: RightArm
+    6400000: pasted__pCube4
+    6400002: pasted__pCylinder3
+    6400004: pasted__pCylinder3 1
+    6400006: pasted__polySurface1
+    6400008: pCube4
+    6400010: pCube7
+    6400012: polySurface1
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -214,7 +221,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

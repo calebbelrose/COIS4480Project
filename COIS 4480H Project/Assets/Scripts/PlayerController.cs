@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
     void Start()
     {
-        transform.Translate(Random.value * 8f - 4f, 0.33f, Random.value * 8f - 4f);
+        transform.Translate(Random.value * 8f - 4f, 0.3047705f, Random.value * 8f - 4f);
     }
 
     void Update()
