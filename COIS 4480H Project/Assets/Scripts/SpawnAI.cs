@@ -10,7 +10,5 @@ public class SpawnAI : MonoBehaviour {
         maxAI = 25;
         for (int i = 0; i < maxAI; i++)
             instance = Instantiate(Resources.Load("AI", typeof(GameObject))) as GameObject;
-
-
     }
 }
