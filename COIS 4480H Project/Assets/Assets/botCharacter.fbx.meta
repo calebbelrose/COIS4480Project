@@ -69,6 +69,12 @@ ModelImporter:
     100122: transform7
     100124: transform8
     100126: transform9
+    100128: LeftAntenna
+    100130: LeftArm
+    100132: LeftLeg
+    100134: RightAntenna
+    100136: RightArm
+    100138: RightLeg
     400000: //RootNode
     400002: group
     400004: group1
@@ -133,6 +139,12 @@ ModelImporter:
     400122: transform7
     400124: transform8
     400126: transform9
+    400128: LeftAntenna
+    400130: LeftArm
+    400132: LeftLeg
+    400134: RightAntenna
+    400136: RightArm
+    400138: RightLeg
     2300000: pasted__pCube4
     2300002: pasted__pCylinder3
     2300004: pasted__pCylinder3 1
@@ -140,6 +152,13 @@ ModelImporter:
     2300008: pCube4
     2300010: pCube7
     2300012: polySurface1
+    2300014: //RootNode
+    2300016: LeftAntenna
+    2300018: LeftArm
+    2300020: LeftLeg
+    2300022: RightAntenna
+    2300024: RightArm
+    2300026: RightLeg
     3300000: pasted__pCube4
     3300002: pasted__pCylinder3
     3300004: pasted__pCylinder3 1
@@ -147,6 +166,13 @@ ModelImporter:
     3300008: pCube4
     3300010: pCube7
     3300012: polySurface1
+    3300014: //RootNode
+    3300016: LeftAntenna
+    3300018: LeftArm
+    3300020: LeftLeg
+    3300022: RightAntenna
+    3300024: RightArm
+    3300026: RightLeg
     4300000: pCube4
     4300002: pasted__pCube4
     4300004: pCube7
@@ -154,6 +180,13 @@ ModelImporter:
     4300008: polySurface1
     4300010: pasted__pCylinder3
     4300012: pasted__pCylinder3
+    4300014: Body
+    4300016: RightAntenna
+    4300018: LeftAntenna
+    4300020: RightLeg
+    4300022: LeftLeg
+    4300024: LeftArm
+    4300026: RightArm
     9500000: //RootNode
   materials:
     importMaterials: 1

@@ -11,6 +11,7 @@ public class AIController : MonoBehaviour
     public Transform goal;
     private int destPoint;
     private NavMeshAgent agent;
+    private bool isMoving = true;
 
     // Use this for initialization
     void Start()
@@ -30,6 +31,9 @@ public class AIController : MonoBehaviour
         if (targets.Length == 0)
             return;
 
+        agent.Resume();
+        isMoving = true;
+
         // Set the agent to go to the currently selected destination.
         agent.destination = targets[destPoint].transform.position;
 
@@ -43,13 +47,17 @@ public class AIController : MonoBehaviour
     {
         if (agent.remainingDistance < 0.5f)
         {
-            StartCoroutine(Wait());
-            GotoNextPoint();
+            if (isMoving)
+            {
+                agent.Stop();
+                isMoving = false;
+                Invoke("GotoNextPoint", 1);
+            }
         }
     }
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(Random.value + 2.5f);
+        yield return new WaitForSeconds(1000);
     }
 }

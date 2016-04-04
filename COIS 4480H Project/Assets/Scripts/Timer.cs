@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        timer = 20;
+        timer = 1;
         timeStarted = true;
     }
 
@@ -36,12 +36,18 @@ public class Timer : MonoBehaviour
             myStyle.normal.textColor = Color.yellow;
         else if (timer < 1)
         {
-            myStyle.normal.textColor = Color.blue;
             timeStarted = false;
+            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "Time's up!", myStyle);
+            StartCoroutine(Wait());
         }
         else
             myStyle.normal.textColor = Color.red;
 
         GUI.Label(new Rect(Screen.width / 2 - 50, 10, 100, 100), niceTime, myStyle);
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(2.5f);
     }
 }
