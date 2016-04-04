@@ -2,14 +2,14 @@
 using System.Collections;
 
 public class SpawnAI : MonoBehaviour {
+    private int maxAI;
 
 	// Use this for initialization
 	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        AI
+        maxAI = 25;
+        for (int i = 0; i < maxAI; i++)
+            GameObject.CreatePrimitive(PrimitiveType.Cube);
+        
+    }
 }

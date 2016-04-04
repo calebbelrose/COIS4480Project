@@ -15,7 +15,10 @@ public class AIController : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
         agent.autoBraking = false;
         targets = GameObject.FindGameObjectsWithTag("NavMeshTarget");
-
+        GUIStyle myStyle = new GUIStyle();
+        myStyle.fontSize = 50;
+        gameObject.GetComponent<Renderer>().material.color = Color.green;
+        GUI.Label(new Rect(Screen.width / 2 - 50, 300, 100, 100), gameObject.GetComponent<Renderer>().material.color.ToString(), myStyle);
         GotoNextPoint();
     }
 
