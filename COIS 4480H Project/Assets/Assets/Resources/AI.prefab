@@ -894,7 +894,8 @@ GameObject:
   - 4: {fileID: 486644}
   - 95: {fileID: 9545044}
   - 143: {fileID: 14391468}
-  - 114: {fileID: 11477510}
+  - 114: {fileID: 11408432}
+  - 195: {fileID: 19505804}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -2056,7 +2057,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11477510
+--- !u!114 &11408432
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2064,10 +2065,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 185908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb98d66e100dfa4d9232127ca0dc106, type: 3}
+  m_Script: {fileID: 11500000, guid: d50a46545e6cc8c48805fa5e28d93545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  goal: {fileID: 0}
 --- !u!143 &14391468
 CharacterController:
   m_ObjectHideFlags: 1
@@ -2085,6 +2086,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &19505804
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185908}
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Speed: 1.15
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 100
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
