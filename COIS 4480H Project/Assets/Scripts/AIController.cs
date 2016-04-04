@@ -13,20 +13,9 @@ public class AIController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Color[] colors = { Color.blue, Color.cyan, Color.gray, Color.green, Color.magenta, Color.red, Color.white, Color.yellow };
-        Renderer[] renderers;
-        Color currColor;
-
-        transform.Translate(Random.value * 8f - 4f, 0.33f, Random.value * 8f - 4f);
         agent = GetComponent<NavMeshAgent>();
         agent.autoBraking = false;
-        renderers = gameObject.GetComponentsInChildren<Renderer>();
 
-        for (int i = 0; i < renderers.Length; i++)
-        {
-            currColor = colors[(int)(Random.value * colors.Length)];
-            renderers[i].material.color = currColor;
-        }
         targets = GameObject.FindGameObjectsWithTag("NavMeshTarget");
         destPoint = (int)(Random.value * targets.Length);
         GotoNextPoint();

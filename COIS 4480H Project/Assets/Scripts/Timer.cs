@@ -3,38 +3,30 @@ using System.Collections;
 
 public class Timer : MonoBehaviour
 {
-
+    private const float MAX_TIME = 60f;
     public static float timer;
-    public static bool timeStarted = false;
+    public static bool timeStarted;
     private int maxAI;
     private GameObject[] aiList;
     private GameObject player;
-    private bool linedUp = false;
-    private bool winner = false;
+    private bool linedUp;
+    private bool winner;
+    private bool selected;
+    private bool reset = true;
 
     // Use this for initialization
     void Start()
     {
-        Color[] colors = { Color.blue, Color.cyan, Color.gray, Color.green, Color.magenta, Color.red, Color.white, Color.yellow };
-        Color currColor;
-
-        timer = 60;
-        timeStarted = true;
+        timer = MAX_TIME;
         maxAI = 23;
         aiList = new GameObject[maxAI];
-        player = Instantiate(Resources.Load("Player", typeof(GameObject))) as GameObject;
-        for (int i = 0; i < maxAI; i++)
-        {
-            Renderer[] renderers;
-            aiList[i] = Instantiate(Resources.Load("AI", typeof(GameObject))) as GameObject;
-            renderers = aiList[i].gameObject.GetComponentsInChildren<Renderer>();
 
-            for (int j = 0; j < renderers.Length; j++)
-            {
-                currColor = colors[(int)Random.value * colors.Length];
-                renderers[j].material.color = currColor;
-            }
-        }
+        player = Instantiate(Resources.Load("Player", typeof(GameObject))) as GameObject;
+
+        for (int i = 0; i < maxAI; i++)
+            aiList[i] = Instantiate(Resources.Load("AI", typeof(GameObject))) as GameObject;
+
+        Reset();
     }
 
     // Update is called once per frame
@@ -44,12 +36,13 @@ public class Timer : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
-        else if(linedUp)
-        { // if left button pressed...
+        else if (linedUp && Input.GetMouseButtonDown(0))
+        {
             Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit) && hit.transform.gameObject == player.gameObject)
                 winner = true;
+            selected = true;
         }
     }
 
@@ -83,10 +76,23 @@ public class Timer : MonoBehaviour
                 GUI.Label(new Rect(Screen.width / 2 - 50, 10, 100, 100), niceTime, myStyle);
             }
         }
-        else if (winner)
+        else if (selected)
         {
-            myStyle.normal.textColor = Color.green;
-            GUI.Label(new Rect(20f + Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You won!", myStyle);
+            if (winner)
+            {
+                myStyle.normal.textColor = Color.green;
+                GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You won!", myStyle);
+            }
+            else
+            {
+                myStyle.normal.textColor = Color.red;
+                GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You lost!", myStyle);
+            }
+            if (reset)
+            {
+                reset = false;
+                Invoke("Reset", 2);
+            }
         }
     }
 
@@ -119,5 +125,42 @@ public class Timer : MonoBehaviour
             currZ += 2f;
         }
 
+    }
+
+    void Reset()
+    {
+        linedUp = false;
+        winner = false;
+        timer = MAX_TIME;
+        selected = false;
+        reset = true;
+
+        Color[] colors = { Color.blue, Color.cyan, Color.gray, Color.green, Color.magenta, Color.red, Color.white, Color.yellow };
+        Color currColor;
+        Renderer[] renderers;
+
+        player.gameObject.transform.position = new Vector3(Random.value * 8f - 4f, 0.3047705f, Random.value * 8f - 4f);
+        renderers = player.gameObject.GetComponentsInChildren<Renderer>();
+
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            currColor = colors[(int)(Random.value * colors.Length)];
+            renderers[i].material.color = currColor;
+        }
+
+        for (int i = 0; i < aiList.Length; i++)
+        {
+            aiList[i].gameObject.transform.position = new Vector3(Random.value * 8f - 4f, 0.3047705f, Random.value * 8f - 4f);
+            renderers = aiList[i].gameObject.GetComponentsInChildren<Renderer>();
+            aiList[i].gameObject.GetComponent<NavMeshAgent>().enabled = true;
+
+            for (int j = 0; j < renderers.Length; j++)
+            {
+                currColor = colors[(int)(Random.value * colors.Length)];
+                renderers[j].material.color = currColor;
+            }
+        }
+
+        timeStarted = true;
     }
 }
