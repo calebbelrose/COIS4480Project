@@ -15,7 +15,7 @@ public class Timer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        timer = 5;
+        timer = 60;
         timeStarted = true;
         maxAI = 23;
         aiList = new GameObject[maxAI];
@@ -31,9 +31,9 @@ public class Timer : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
-        else if(linedUp && Input.GetMouseButtonDown(0))
+        else if(linedUp)
         { // if left button pressed...
-            Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit) && hit.transform.gameObject == player.gameObject)
                 winner = true;
@@ -43,13 +43,13 @@ public class Timer : MonoBehaviour
     void OnGUI()
     {
         GUIStyle myStyle = new GUIStyle();
+        myStyle.fontSize = 50;
+
         if (!linedUp)
         {
             int minutes = Mathf.FloorToInt(timer / 60F);
             int seconds = Mathf.FloorToInt(timer - minutes * 60);
             string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
-
-            myStyle.fontSize = 50;
 
             if (timer > 11)
                 myStyle.normal.textColor = Color.yellow;
@@ -73,7 +73,7 @@ public class Timer : MonoBehaviour
         else if (winner)
         {
             myStyle.normal.textColor = Color.green;
-            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You won!", myStyle);
+            GUI.Label(new Rect(20f + Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You won!", myStyle);
         }
     }
 
@@ -92,10 +92,18 @@ public class Timer : MonoBehaviour
             for (int j = 0; j < 8; j++)
             {
                 currX += 0.75f;
-                if ((i + 1) * (j + 1) == playerPos)
+                if (i * 8 + j == playerPos)
+                {
                     player.transform.position = new Vector3(currX, 0.3047705f, currZ);
+                    player.transform.rotation = Quaternion.identity;
+                }
                 else
-                    aiList[currAI++].transform.position = new Vector3(currX, 0.3047705f, currZ);
+                {
+                    aiList[currAI].gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                    aiList[currAI].gameObject.transform.rotation = Quaternion.identity;
+                    aiList[currAI].transform.position = new Vector3(currX, 0.3047705f, currZ);
+                    currAI++;
+                }
             }
             currZ += 2f;
         }
