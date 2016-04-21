@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Timer : MonoBehaviour
 {
-    private const float MAX_TIME = 60f;
+    private const float MAX_TIME = 600f;
     public static float timer;
     public static bool timeStarted;
     private int maxAI;
