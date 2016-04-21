@@ -603,7 +603,7 @@ GameObject:
   - 143: {fileID: 14346792}
   - 114: {fileID: 11407692}
   - 65: {fileID: 6518118}
-  - 54: {fileID: 5499434}
+  - 54: {fileID: 5489088}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1640,7 +1640,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146286}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_Children:
   - {fileID: 437320}
@@ -2076,7 +2076,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115672}
   m_Mesh: {fileID: 4300008, guid: 8b5c5768409aff842996b770ab2b1e40, type: 3}
---- !u!54 &5499434
+--- !u!54 &5489088
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2085,12 +2085,12 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1000
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 1
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 1
+  m_Interpolate: 2
+  m_Constraints: 122
+  m_CollisionDetection: 2
 --- !u!64 &6419494
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -2186,7 +2186,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.5, z: 0.25}
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_Center: {x: 0, y: -0.25, z: 0}
 --- !u!95 &9503860
 Animator:
   serializedVersion: 3
@@ -2225,10 +2225,10 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1
+  m_Height: 0.5
   m_Radius: 0.1
   m_SlopeLimit: 90
-  m_StepOffset: 1
+  m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
