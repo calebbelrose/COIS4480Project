@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         timer = MAX_TIME;
-        maxAI = 23;
+        maxAI = 0;
         aiList = new GameObject[maxAI];
 
         player = Instantiate(Resources.Load("Player", typeof(GameObject))) as GameObject;

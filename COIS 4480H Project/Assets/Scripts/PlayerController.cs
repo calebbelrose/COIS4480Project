@@ -2,20 +2,27 @@
 using System.Collections;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerController : MonoBehaviour {
-
+public class PlayerController : MonoBehaviour
+{
+    Vector3 previousLocation;
     void Update()
     {
-        float translation = Input.GetAxis("Vertical");
-        float rotation = Input.GetAxis("Horizontal");
-        translation *= Time.deltaTime;
+        Vector3 moveDirection = Vector3.zero;
+        CharacterController controller = GetComponent<CharacterController>();
+        float rotation;
+
+        moveDirection = new Vector3(0, 0, Input.GetAxis("Vertical"));
+        moveDirection = transform.TransformDirection(moveDirection);
+        moveDirection *= 40 * Time.deltaTime;
+
+        controller.Move(moveDirection * Time.deltaTime);
+        rotation = Input.GetAxis("Horizontal");
         rotation *= Time.deltaTime * 100;
-        transform.Translate(0, 0, translation);
         transform.Rotate(0, rotation, 0);
     }
 
-    void FixedUpdate ()
+    void OnControllerColliderHit(ControllerColliderHit hit)
     {
-
+        Debug.Log(hit.collider.gameObject.ToString());
     }
 }
