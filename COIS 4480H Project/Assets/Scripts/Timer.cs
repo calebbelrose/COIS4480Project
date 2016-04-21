@@ -151,7 +151,7 @@ public class Timer : MonoBehaviour
         for (int i = 0; i < aiList.Length; i++)
         {
             NavMeshHit hit;
-            NavMesh.SamplePosition(new Vector3(Random.value * 8f - 4f, 0f, Random.value * 8f - 4f), out hit, 1.0f, NavMesh.AllAreas);
+            NavMesh.SamplePosition(new Vector3(Random.value * 8f - 4f, 0.190027f, Random.value * 8f - 4f), out hit, 1f, NavMesh.AllAreas);
             aiList[i].gameObject.transform.position = hit.position;
             renderers = aiList[i].gameObject.GetComponentsInChildren<Renderer>();
             aiList[i].gameObject.GetComponent<NavMeshAgent>().enabled = true;
