@@ -139,7 +139,7 @@ public class Timer : MonoBehaviour
         Color currColor;
         Renderer[] renderers;
 
-        player.gameObject.transform.position = new Vector3(Random.value * 8f - 4f, 0.5161383f, Random.value * 8f - 4f);
+        player.gameObject.transform.position = new Vector3(Random.value * 8f - 4f, 0.7661383f, Random.value * 8f - 4f);
         renderers = player.gameObject.GetComponentsInChildren<Renderer>();
 
         for (int i = 0; i < renderers.Length; i++)
