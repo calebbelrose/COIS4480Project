@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Timer : MonoBehaviour
 {
-    private const float MAX_TIME = 1f;
+    private const float MAX_TIME = 60.0f;
     public static float timer;
     public static bool timeStarted;
     private int maxAI;
@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         timer = MAX_TIME;
-        maxAI = 0;
+        maxAI = 23;
         aiList = new GameObject[maxAI];
 
         player = Instantiate(Resources.Load("Player", typeof(GameObject))) as GameObject;

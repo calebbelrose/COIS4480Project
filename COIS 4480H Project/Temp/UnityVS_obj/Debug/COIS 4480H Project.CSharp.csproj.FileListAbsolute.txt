@@ -1,0 +1,7 @@
+C:\Users\Luke\Documents\GitHub\COIS4480Project\COIS 4480H Project\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+C:\Users\Luke\Documents\GitHub\COIS4480Project\COIS 4480H Project\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+C:\Users\Luke\Documents\GitHub\COIS4480Project\COIS 4480H Project\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Users\Luke\Documents\GitHub\COIS4480Project\COIS 4480H Project\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Users\Luke\Documents\GitHub\COIS4480Project\COIS 4480H Project\Temp\UnityVS_obj\Debug\COIS 4480H Project.CSharp.csprojResolveAssemblyReference.cache
+C:\Users\Luke\Documents\GitHub\COIS4480Project\COIS 4480H Project\Temp\UnityVS_obj\Debug\Assembly-CSharp.dll
+C:\Users\Luke\Documents\GitHub\COIS4480Project\COIS 4480H Project\Temp\UnityVS_obj\Debug\Assembly-CSharp.pdb
