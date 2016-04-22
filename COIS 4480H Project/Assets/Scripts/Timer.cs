@@ -9,27 +9,25 @@ public class Timer : MonoBehaviour
     private int maxAI;
     private GameObject[] aiList;
     public static GameObject player;
-    private GameObject objective;
     private bool linedUp;
     private bool winner;
     private bool selected;
     private bool reset = true;
-    private GameObject[] targets;
+    public static GameObject[] targets;
     public static int score = 0;
 
     // Use this for initialization
     void Start()
     {
         timer = MAX_TIME;
-        maxAI = 23;
+        maxAI = 0;
         aiList = new GameObject[maxAI];
 
         player = Instantiate(Resources.Load("Player", typeof(GameObject))) as GameObject;
 
-        objective = Instantiate(Resources.Load("emerald", typeof(GameObject))) as GameObject;
+        Instantiate(Resources.Load("emerald", typeof(GameObject)));
         
         targets = GameObject.FindGameObjectsWithTag("NavMeshTarget");
-        objective.transform.position = targets[(int)(Random.value * targets.Length)].transform.position;
 
         for (int i = 0; i < maxAI; i++)
             aiList[i] = Instantiate(Resources.Load("AI", typeof(GameObject))) as GameObject;

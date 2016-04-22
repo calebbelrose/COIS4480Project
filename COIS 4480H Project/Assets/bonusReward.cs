@@ -3,13 +3,27 @@ using System.Collections;
 
 public class bonusReward : MonoBehaviour {
 
-
-    void OnCollisionEnter(Collision collision)
+    private int currLocation;
+    void Start()
     {
-        if (collision.gameObject == Timer.player)
+        currLocation = (int)(Random.value * Timer.targets.Length - 1);
+        gameObject.transform.position = Timer.targets[currLocation].transform.position;
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        Debug.Log("collision");
+        if (collider.gameObject == Timer.player)
         {
-            Destroy(gameObject);
+            int newLocation;
             Timer.score++;
+            do
+            {
+                newLocation = (int)(Random.value * Timer.targets.Length - 1);
+            }while (newLocation == currLocation);
+
+            currLocation = newLocation;
+            gameObject.transform.position = Timer.targets[currLocation].transform.position;
         }
     }
 }
