@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
         moveDirection = new Vector3(0, -9.81f, Input.GetAxis("Vertical"));
         moveDirection = transform.TransformDirection(moveDirection);
-        moveDirection *= 40 * Time.deltaTime;
+        moveDirection *= 20 * Time.deltaTime;
 
         controller.Move(moveDirection * Time.deltaTime);
         rotation = Input.GetAxis("Horizontal");
