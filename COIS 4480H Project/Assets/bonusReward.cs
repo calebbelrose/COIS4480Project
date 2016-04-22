@@ -12,7 +12,6 @@ public class bonusReward : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("collision");
         if (collider.gameObject == Timer.player)
         {
             int newLocation;

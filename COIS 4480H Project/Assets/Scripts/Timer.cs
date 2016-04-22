@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Timer : MonoBehaviour
 {
-    private const float MAX_TIME = 60f;
+    private const float MAX_TIME = 1f;
     public static float timer;
     public static bool timeStarted;
     private int maxAI;
@@ -46,7 +46,8 @@ public class Timer : MonoBehaviour
         {
             Ray ray = gameObject.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit) && hit.transform.gameObject == player.gameObject)
+            Debug.Log("click");
+            if (player.GetComponent<Collider>().Raycast(ray, out hit, 100f) && hit.transform.gameObject == player)
                 winner = true;
             selected = true;
         }
@@ -57,7 +58,8 @@ public class Timer : MonoBehaviour
         GUIStyle myStyle = new GUIStyle();
         myStyle.fontSize = 50;
 
-        GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 0), score.ToString(), myStyle);
+        myStyle.normal.textColor = Color.white;
+        GUI.Label(new Rect(Screen.width - 100, 10, Screen.width - 100, 100), score.ToString(), myStyle);
 
         if (!linedUp)
         {
@@ -102,6 +104,8 @@ public class Timer : MonoBehaviour
                 Invoke("Reset", 2);
             }
         }
+        else if (linedUp)
+            GUI.Label(new Rect(Screen.width / 2 - 200, 10, 400, 100), "Guess the player", myStyle);
     }
 
     void LineupCharacters()
