@@ -8,11 +8,14 @@ public class Timer : MonoBehaviour
     public static bool timeStarted;
     private int maxAI;
     private GameObject[] aiList;
-    private GameObject player;
+    public static GameObject player;
+    private GameObject objective;
     private bool linedUp;
     private bool winner;
     private bool selected;
     private bool reset = true;
+    private GameObject[] targets;
+    public static int score = 0;
 
     // Use this for initialization
     void Start()
@@ -22,6 +25,11 @@ public class Timer : MonoBehaviour
         aiList = new GameObject[maxAI];
 
         player = Instantiate(Resources.Load("Player", typeof(GameObject))) as GameObject;
+
+        objective = Instantiate(Resources.Load("emerald", typeof(GameObject))) as GameObject;
+        
+        targets = GameObject.FindGameObjectsWithTag("NavMeshTarget");
+        objective.transform.position = targets[(int)(Random.value * targets.Length)].transform.position;
 
         for (int i = 0; i < maxAI; i++)
             aiList[i] = Instantiate(Resources.Load("AI", typeof(GameObject))) as GameObject;
@@ -50,6 +58,8 @@ public class Timer : MonoBehaviour
     {
         GUIStyle myStyle = new GUIStyle();
         myStyle.fontSize = 50;
+
+        GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 0), score.ToString(), myStyle);
 
         if (!linedUp)
         {
